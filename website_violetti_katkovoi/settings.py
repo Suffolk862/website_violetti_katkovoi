@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
-    'viokat_apps',
+    'main',
+    'users',
+    'tests',
 
     # Other applications
     'bootstrap4',
@@ -129,3 +131,6 @@ STATIC_URL = '/static/'
 BOOTSTRAP4 = {
     'include_jquery': True,    
     } 
+
+# Мои настройки
+LOGIN_URL = '/users/login/'

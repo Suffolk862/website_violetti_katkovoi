@@ -1,0 +1,57 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>	
+<html lang="ru">	  
+  <head>    
+	<meta charset="utf-8">    
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">    
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Violetta Katkova</title>
+	
+	{% bootstrap_css %}    
+	{% bootstrap_javascript jquery='full' %}
+  </head> 
+  <body>
+  	<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary" >
+  	  <a class="navbar-brand" href="{% url 'main:index' %}">Вебсайт Виолетты Катковой</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+	        <a class="nav-link" href="{% url 'main:teacher' %}">О преподавателе</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'main:task' %}">Задания</a>
+	      </li>
+	    </ul>
+	    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+	        <a class="nav-link" href="{% url 'users:registration' %}">Регистрация</a>
+	      </li>
+	      {% if user.is_authenticated %}
+		    <li class="nav-item dropdown">
+		      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		        Hello, {{ user.username }}.
+		      </a>
+	          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a>
+              </div>  	  
+	        </li>	     
+	      {% else %}
+	      	<li class="nav-item">
+	          <a class="nav-link" href="{% url 'users:login' %}">Войти</a>
+	        </li>
+	      {% endif %}
+	    </ul>
+	  </div>
+	</nav> 
+	<main role="main" class="container">
+      <div class="jumbotron" style="margin-top: 75px;">
+      	{% block content %}{% endblock content %}
+      </div>
+    </main>
+  </body>
+</html>

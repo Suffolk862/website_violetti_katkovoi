@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+{% block content %}
+<form method="post" action="{% url 'tests:test' %}">
+	{% csrf_token %}
+	{{ formset.management_form }}
+	<ul>
+	{% for question, form in fullset %}
+  	  <li style="list-style-type: none;" >{{ question }}</li>
+  	  <br>
+  	  <li style="list-style-type: none;" >{{ form }}</li>
+  	  <br>
+	{% endfor %}
+	<button name="submit">Отправить результаты</button>
+</form>
+{% endblock content %}
+
