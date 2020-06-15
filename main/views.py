@@ -7,13 +7,16 @@ from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm
 
+
 def index(request):
-	"""Home page app main"""
+	"""Home page main app"""
 	return render(request, 'main/index.html')
+
 
 def teacher(request):
 	"""Teacher"""
-	return render(request, 'main/teacher.html')	
+	return render(request, 'main/teacher.html')
+
 
 @login_required
 def task(request):
@@ -22,14 +25,13 @@ def task(request):
 	context = {'tasks': tasks}
 	return render(request, 'main/task.html', context)
 
+
 @login_required
 def new_task(request):
-	"""Определяет новое задание"""
+	"""New task"""
 	if request.method != 'POST':
-		#Данные не отправлялись; создается пустая форма.
 		form = TaskForm()
 	else:
-		#Отправлены данные POST; обработать данные.
 		form = TaskForm(data=request.POST)
 		if form.is_valid():
 			form.save()
@@ -38,8 +40,7 @@ def new_task(request):
 	context = {'form': form}
 	return render(request, 'main/new_task.html', context)
 
+
 def registration(request):
 	"""Registration"""
 	return render(request, '')
-
-

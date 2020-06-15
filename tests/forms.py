@@ -1,6 +1,7 @@
 from django import forms
-from django.forms import ModelForm, CheckboxInput, modelformset_factory
-from .models import Question, Test, Answer
+from django.forms import ModelForm, modelformset_factory
+from .models import Answer
+
 
 class AnswerForm(forms.ModelForm):
 
@@ -10,5 +11,6 @@ class AnswerForm(forms.ModelForm):
 		labels = {
 			'answer': 'выберите вариант ответа:',
 		}
+
 
 AnswerFormSet = modelformset_factory(Answer, form=AnswerForm, extra=6)
