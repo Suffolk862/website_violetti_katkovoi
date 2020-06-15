@@ -14,13 +14,11 @@ def index(request):
 
 
 def teacher(request):
-	"""Teacher"""
 	return render(request, 'main/teacher.html')
 
 
 @login_required
 def task(request):
-	"""Task"""
 	tasks = Task.objects.order_by('date_added')
 	context = {'tasks': tasks}
 	return render(request, 'main/task.html', context)
@@ -28,7 +26,6 @@ def task(request):
 
 @login_required
 def new_task(request):
-	"""New task"""
 	if request.method != 'POST':
 		form = TaskForm()
 	else:
@@ -42,5 +39,4 @@ def new_task(request):
 
 
 def registration(request):
-	"""Registration"""
 	return render(request, '')

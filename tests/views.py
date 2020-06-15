@@ -6,7 +6,6 @@ from .forms import AnswerFormSet
 
 
 def test(request):
-	"""Test"""
 	if request.method != 'POST':
 		formset = AnswerFormSet()
 		questions = Question.objects.filter(test=1)
